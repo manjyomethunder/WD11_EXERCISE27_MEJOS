@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 27</title>
+
+    <!-- <style>
+        body {
+            background-color: rgb(red, green, blue);
+        }
+    </style> -->
+</head>
+<body id="randomBgColor" style="text-align: center">
+    <h1>EXERCISE 27</h1>
+    <button onclick="start();">Start the change of color</button>
+    <button onclick="stop();">Stop the change of color</button><br><br>
+    <!-- <h3 id="downCount">COUNTDOWN</h3> -->
+    <input type="number" placeholder="set timer in seconds" id="setTimer">
+    <!-- <button type="button" onclick="start();">Set</button> -->
+    <h1 id="rgbValue">RGB value</h1>
+</body>
+<script>
+    function sparklingBg() {
+        let sampleHeading = document.getElementById("randomBgColor")
+        // let colorRed = 1;
+        // let colorGreen = 1;
+        // let colorBlue = 1;
+        let generateColor1 = Math.floor(Math.random() * 256);
+        let generateColor2 = Math.floor(Math.random() * 256);
+        let generateColor3 = Math.floor(Math.random() * 256);
+        rgbValue.innerHTML = `RGB(${generateColor1}, ${generateColor2}, ${generateColor3})`
+
+        randomBgColor.style.background = `rgb(${generateColor1},${generateColor2},${generateColor3})`;
+    }
+    function stop(){
+        clearInterval(intervalID);
+    }
+    function start(){
+        
+        setTimer = document.getElementById("setTimer").value * 1000;
+        if (setTimer <= 0) {
+            setTimer = 500;
+        }
+        intervalID = setInterval(sparklingBg, setTimer);
+    }
+
+    // const greet = () => {
+    //     start()
+    // }
+    // setTimer = document.getElementById("setTimer").value * 1000;
+    // let countDown = setInterval(() => {
+    //     if(setTimer <= 0) {
+    //         clearInterval(countDown)
+    //         stop()
+    //     } else {
+    //         downCount.innerHTML = `${setTimer} seconds remaining`;
+    //         start()
+    //     }
+
+    //     setTimer -= 1
+    // }, 1000)
+
+//     function startTimer()
+// {
+//    var obj = document.getElementById("timer");
+
+//     /* make sure to tell javascript that 'seconds' is  Number that 
+//         comes from the input box */
+//    var seconds;
+
+
+//    seconds = Number(obj.display.value);
+
+// /*  Don't need this *AND* seconds-- */
+// //       seconds = seconds - 1;
+
+//    if (seconds <= 0)    
+//    {
+//    clearInterval(Id);
+//       seconds = 0;
+//    }
+//     else
+//         {
+//             seconds--;
+//         }
+
+//   obj.display.value = seconds;
+// }
+
+</script>
+</html>
