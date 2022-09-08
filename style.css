@@ -26,19 +26,10 @@ body {
     font-size: 30px;
     text-align: center;
     padding: 10px;
-    border: solid 4px green;
-    color: green;
-}
-
-.input::placeholder {
-    color: lightgray;
-    font-family: cursive;
-
+    
 }
 
 .btn {
-    /* background-color: green; */
-    color: white;
     border: none;
     display: block;
     width: 100%;
@@ -53,9 +44,4 @@ body {
 
 .btn:hover {
     filter: brightness(0.9);
-}
-
-.score {
-    color: green;
-    text-align: right;
 }
