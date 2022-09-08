@@ -4,46 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Exercise 27</title>
 
-    <!-- <style>
-        body {
-            background-color: rgb(red, green, blue);
-        }
-    </style> -->
+    
 </head>
 <body id="randomBgColor" style="text-align: center">
-    <h1>EXERCISE 27</h1>
-    <button onclick="start();">Start the change of color</button>
-    <button onclick="stop();">Stop the change of color</button><br><br>
-    <!-- <h3 id="downCount">COUNTDOWN</h3> -->
-    <input type="number" placeholder="set timer in seconds" id="setTimer">
+    
+    <form class="form" action="">
+        <h1>ASYNCHRONOUS JAVASCRIPT</h1>
+        <button class="btn btn-success" id="startBtn" onclick="start();">Start the change of color</button>
+        <button class="btn btn-danger" type="button" onclick="stop();">Stop the change of color</button>
+        <button class="btn btn-secondary" onclick="window.location.reload();">Reset</button>
+        <br><br>
+        <h3 id="downCounth3" style="display: none;">COUNTDOWN</h3>
+        <p id="downCount"></p>
+        <input type="number" placeholder="set timer in seconds" id="setTimer">
+        <input type="number" placeholder="set count down in seconds" id="setCountDown">
+        <h1 id="rgbValue">RGB value</h1>
+    </form>
     <!-- <button type="button" onclick="start();">Set</button> -->
-    <h1 id="rgbValue">RGB value</h1>
+    
 </body>
 <script>
     function sparklingBg() {
         let sampleHeading = document.getElementById("randomBgColor")
-        // let colorRed = 1;
-        // let colorGreen = 1;
-        // let colorBlue = 1;
-        let generateColor1 = Math.floor(Math.random() * 256);
-        let generateColor2 = Math.floor(Math.random() * 256);
-        let generateColor3 = Math.floor(Math.random() * 256);
-        rgbValue.innerHTML = `RGB(${generateColor1}, ${generateColor2}, ${generateColor3})`
+        let colorRed = Math.floor(Math.random() * 256);
+        let colorGreen = Math.floor(Math.random() * 256);
+        let colorBlue = Math.floor(Math.random() * 256);
+        rgbValue.innerHTML = `RGB(${colorRed}, ${colorGreen}, ${colorBlue})`
 
-        randomBgColor.style.background = `rgb(${generateColor1},${generateColor2},${generateColor3})`;
+        randomBgColor.style.background = `rgb(${colorRed},${colorGreen},${colorBlue})`;
     }
     function stop(){
+        downCounth3.style.display = "none";
+        downCount.style.display = "none";
+        startBtn.removeAttribute("disabled");
+        setCountDown = 0;
         clearInterval(intervalID);
+    
+        
+        
     }
     function start(){
-        
-        setTimer = document.getElementById("setTimer").value * 1000;
+        startBtn.setAttribute("disabled", true);
+        downCounth3.style.display = "block";
+        downCount.style.display = "block";
+        let setTimer = document.getElementById("setTimer").value * 1000;
         if (setTimer <= 0) {
             setTimer = 500;
         }
         intervalID = setInterval(sparklingBg, setTimer);
+        
+        let setCountDown = document.getElementById("setCountDown").value;
+        if (setCountDown <= 0) {
+            setCountDown = 10;
+        }
+        
+        let countDown = setInterval(() => {
+            if (setCountDown < 0){
+                clearInterval(countDown)
+                stop()
+                
+            }
+             else {
+                
+                downCount.innerHTML = `${setCountDown} seconds remaining to stop`;
+                
+            }
+            setCountDown -= 1
+            
+        }, 1000)
+        
+        
     }
 
     // const greet = () => {
